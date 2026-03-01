@@ -1,0 +1,5 @@
+podman
+buildah
+skopeo
+kubectl
+helm

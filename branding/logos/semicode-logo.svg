@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="256" height="256">
+  <rect width="256" height="256" rx="32" fill="#1e1e2e"/>
+  <text x="128" y="100" font-family="monospace" font-size="48" font-weight="bold" fill="#89b4fa" text-anchor="middle">SC</text>
+  <text x="128" y="150" font-family="monospace" font-size="18" fill="#cdd6f4" text-anchor="middle">SemiCode</text>
+  <text x="128" y="175" font-family="monospace" font-size="14" fill="#585b70" text-anchor="middle">OS v2</text>
+</svg>

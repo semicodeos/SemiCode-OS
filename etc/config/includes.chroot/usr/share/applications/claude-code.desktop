@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=Claude Code
+Comment=AI-powered coding assistant from Anthropic
+Exec=gnome-terminal -- claude
+Icon=/usr/share/icons/semicode/claude-code.png
+Terminal=false
+Type=Application
+Categories=Development;IDE;
+Keywords=ai;claude;code;assistant;
+StartupNotify=true

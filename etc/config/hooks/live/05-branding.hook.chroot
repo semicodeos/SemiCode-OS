@@ -1,0 +1,22 @@
+#!/bin/bash
+set -euo pipefail
+echo ">>> [05] Applying SemiCode branding..."
+
+# Set Plymouth theme
+if [ -d /usr/share/plymouth/themes/semicode ]; then
+    plymouth-set-default-theme semicode
+    update-initramfs -u
+fi
+
+# Set GRUB theme
+if [ -d /usr/share/grub/themes/semicode ]; then
+    sed -i 's|^#\?GRUB_THEME=.*|GRUB_THEME="/usr/share/grub/themes/semicode/theme.txt"|' /etc/default/grub
+    update-grub || true
+fi
+
+# Set default wallpaper for GNOME
+if [ -f /usr/share/backgrounds/semicode/default-dark.png ]; then
+    ln -sf /usr/share/backgrounds/semicode/default-dark.png /usr/share/backgrounds/semicode-default.png
+fi
+
+echo ">>> [05] Branding applied."

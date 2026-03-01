@@ -1,0 +1,10 @@
+python3
+python3-pip
+python3-venv
+golang-go
+default-jdk
+ruby
+ruby-dev
+php
+php-cli
+lua5.4

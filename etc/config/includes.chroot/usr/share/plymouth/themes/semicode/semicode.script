@@ -1,0 +1,11 @@
+# SemiCode OS Plymouth boot script
+# Displays logo centered on screen with progress spinner
+
+Window.SetBackgroundTopColor(0.118, 0.118, 0.180);
+Window.SetBackgroundBottomColor(0.118, 0.118, 0.180);
+
+logo.image = Image("logo.png");
+logo.sprite = Sprite(logo.image);
+logo.sprite.SetX(Window.GetWidth() / 2 - logo.image.GetWidth() / 2);
+logo.sprite.SetY(Window.GetHeight() / 2 - logo.image.GetHeight() / 2);
+logo.sprite.SetOpacity(1);

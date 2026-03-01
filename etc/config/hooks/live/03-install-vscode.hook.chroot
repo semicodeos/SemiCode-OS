@@ -1,0 +1,20 @@
+#!/bin/bash
+set -euo pipefail
+echo ">>> [03] Installing VS Code and extensions..."
+
+# Install VS Code
+apt-get install -y code
+
+# Install Docker CE
+apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+
+# Install Terraform
+apt-get install -y terraform
+
+# Install Rust via rustup (system-wide)
+export RUSTUP_HOME=/opt/rustup
+export CARGO_HOME=/opt/cargo
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y --no-modify-path
+ln -sf /opt/cargo/bin/* /usr/local/bin/
+
+echo ">>> [03] VS Code, Docker, Terraform, and Rust installed."

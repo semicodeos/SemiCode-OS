@@ -1,0 +1,24 @@
+#!/bin/bash
+set -euo pipefail
+echo ">>> [04] Applying GNOME customizations..."
+
+# Compile dconf database
+mkdir -p /etc/dconf/db
+dconf compile /etc/dconf/db/semicode /etc/dconf/db/semicode.d
+
+# Configure GDM to use the semicode dconf profile
+mkdir -p /etc/gdm3
+cat > /etc/gdm3/custom.conf << 'GDMCONF'
+[daemon]
+AutomaticLoginEnable=false
+
+[security]
+
+[xdmcp]
+
+[chooser]
+
+[debug]
+GDMCONF
+
+echo ">>> [04] GNOME customizations applied."

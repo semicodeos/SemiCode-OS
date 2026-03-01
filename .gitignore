@@ -1,0 +1,10 @@
+builds/
+tmp/
+*.iso
+.build/
+cache/
+chroot/
+binary/
+local/
+*.log
+.claude/

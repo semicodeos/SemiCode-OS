@@ -1,0 +1,36 @@
+name: Build Release ISO
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install live-build dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y live-build debootstrap xorriso squashfs-tools \
+            grub-efi-amd64-bin grub-pc-bin mtools dosfstools
+
+      - name: Build ISO
+        run: sudo ./scripts/build.sh
+
+      - name: Get version from tag
+        id: version
+        run: echo "version=${GITHUB_REF#refs/tags/v}" >> "$GITHUB_OUTPUT"
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          name: "SemiCode OS v${{ steps.version.outputs.version }}"
+          draft: true
+          generate_release_notes: true
+          files: builds/amd64/*.iso

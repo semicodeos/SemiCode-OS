@@ -1,0 +1,46 @@
+name: PR Validation
+
+on:
+  pull_request:
+    branches: [main]
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install shellcheck
+        run: sudo apt-get install -y shellcheck
+
+      - name: Lint shell scripts
+        run: |
+          find scripts/ -name '*.sh' -exec shellcheck {} +
+          find etc/config/hooks/ -name '*.hook.chroot' -exec shellcheck {} +
+
+      - name: Validate package lists
+        run: |
+          echo "Checking package list files exist..."
+          for f in base desktop devtools languages containers utilities; do
+            if [ ! -f "etc/config/package-lists/${f}.list.chroot" ]; then
+              echo "Missing: etc/config/package-lists/${f}.list.chroot"
+              exit 1
+            fi
+          done
+          echo "All package lists present."
+
+      - name: Validate hook ordering
+        run: |
+          echo "Checking hook scripts..."
+          ls -1 etc/config/hooks/live/*.hook.chroot
+          echo "Hook order validated."
+
+      - name: Check auto scripts are executable
+        run: |
+          for f in etc/auto/config etc/auto/build etc/auto/clean; do
+            if [ ! -x "$f" ]; then
+              echo "Error: $f is not executable"
+              exit 1
+            fi
+          done
+          echo "Auto scripts are executable."

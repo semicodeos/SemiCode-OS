@@ -1,0 +1,17 @@
+git
+gh
+vim
+neovim
+build-essential
+cmake
+make
+gcc
+g++
+curl
+wget
+jq
+httpie
+sqlite3
+postgresql-client
+libssl-dev
+pkg-config

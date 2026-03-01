@@ -1,0 +1,10 @@
+ubuntu-minimal
+casper
+lupin-casper
+grub-efi-amd64
+grub-efi-amd64-signed
+shim-signed
+ubiquity
+ubiquity-frontend-gtk
+ubiquity-slideshow-ubuntu
+linux-generic

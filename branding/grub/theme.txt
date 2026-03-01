@@ -1,0 +1,33 @@
+# SemiCode OS GRUB Theme
+title-text: "SemiCode OS"
+title-color: "#cdd6f4"
+title-font: "JetBrains Mono Regular 24"
+desktop-color: "#1e1e2e"
+message-font: "JetBrains Mono Regular 14"
+message-color: "#cdd6f4"
+terminal-font: "JetBrains Mono Regular 14"
+
++ boot_menu {
+    left = 25%
+    top = 30%
+    width = 50%
+    height = 50%
+    item_color = "#bac2de"
+    selected_item_color = "#1e1e2e"
+    item_height = 36
+    item_padding = 12
+    item_spacing = 4
+    selected_item_pixmap_style = "highlight_*.png"
+    icon_height = 32
+    icon_width = 32
+}
+
++ label {
+    left = 0
+    top = 95%
+    width = 100%
+    align = "center"
+    color = "#585b70"
+    text = "SemiCode OS v2 Genesis"
+    font = "JetBrains Mono Regular 12"
+}

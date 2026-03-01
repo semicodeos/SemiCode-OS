@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=Codex CLI
+Comment=OpenAI Codex command-line coding agent
+Exec=gnome-terminal -- codex
+Icon=/usr/share/icons/semicode/codex.png
+Terminal=false
+Type=Application
+Categories=Development;IDE;
+Keywords=ai;openai;codex;code;
+StartupNotify=true

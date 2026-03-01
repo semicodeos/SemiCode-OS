@@ -1,0 +1,31 @@
+name: Weekly Build
+
+on:
+  schedule:
+    - cron: '0 4 * * 1'  # Every Monday at 4am UTC
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install live-build dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y live-build debootstrap xorriso squashfs-tools \
+            grub-efi-amd64-bin grub-pc-bin mtools dosfstools
+
+      - name: Build ISO
+        run: sudo ./scripts/build.sh
+
+      - name: Upload ISO artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: semicode-os-weekly-${{ github.sha }}
+          path: builds/amd64/*.iso
+          retention-days: 14

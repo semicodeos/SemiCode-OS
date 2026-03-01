@@ -1,0 +1,27 @@
+#!/bin/bash
+set -euo pipefail
+echo ">>> [01] Adding third-party APT repositories..."
+
+# Docker official repo
+install -m 0755 -d /etc/apt/keyrings
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
+chmod a+r /etc/apt/keyrings/docker.asc
+echo "deb [arch=amd64 signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu noble stable" \
+    > /etc/apt/sources.list.d/docker.list
+
+# VS Code repo
+curl -fsSL https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor -o /etc/apt/keyrings/microsoft.gpg
+echo "deb [arch=amd64 signed-by=/etc/apt/keyrings/microsoft.gpg] https://packages.microsoft.com/repos/code stable main" \
+    > /etc/apt/sources.list.d/vscode.list
+
+# Node.js 22.x LTS via NodeSource
+curl -fsSL https://deb.nodesource.com/setup_22.x | bash -
+
+# HashiCorp (Terraform)
+curl -fsSL https://apt.releases.hashicorp.com/gpg | gpg --dearmor -o /etc/apt/keyrings/hashicorp.gpg
+echo "deb [arch=amd64 signed-by=/etc/apt/keyrings/hashicorp.gpg] https://apt.releases.hashicorp.com noble main" \
+    > /etc/apt/sources.list.d/hashicorp.list
+
+apt-get update
+
+echo ">>> [01] Third-party repos configured."

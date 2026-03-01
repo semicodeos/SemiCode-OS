@@ -1,0 +1,54 @@
+# SemiCode OS GNOME Settings
+
+[org/gnome/desktop/interface]
+color-scheme='prefer-dark'
+gtk-theme='Adwaita-dark'
+monospace-font-name='JetBrains Mono 13'
+font-antialiasing='rgba'
+font-hinting='slight'
+clock-show-weekday=true
+
+[org/gnome/desktop/wm/preferences]
+button-layout='appmenu:minimize,maximize,close'
+
+[org/gnome/shell]
+favorite-apps=['org.gnome.Nautilus.desktop', 'org.gnome.Terminal.desktop', 'code.desktop', 'claude-code.desktop', 'firefox.desktop', 'org.gnome.Settings.desktop']
+
+[org/gnome/shell/extensions/dash-to-dock]
+dock-position='BOTTOM'
+autohide=true
+dash-max-icon-size=48
+show-trash=false
+
+[org/gnome/desktop/peripherals/touchpad]
+tap-to-click=true
+natural-scroll=true
+
+[org/gnome/settings-daemon/plugins/color]
+night-light-enabled=true
+night-light-temperature=uint32 3500
+
+[org/gnome/settings-daemon/plugins/power]
+sleep-inactive-ac-type='nothing'
+
+[org/gnome/desktop/session]
+idle-delay=uint32 900
+
+[org/gnome/desktop/wm/keybindings]
+close=['<Super>q']
+
+[org/gnome/settings-daemon/plugins/media-keys]
+custom-keybindings=['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/']
+
+[org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0]
+name='Terminal'
+binding='<Super>t'
+command='gnome-terminal'
+
+[org/gnome/terminal/legacy/profiles:/:b1dcc9dd-5262-4d8d-a863-c897e6d979b9]
+background-color='#1e1e2e'
+foreground-color='#cdd6f4'
+palette=['#45475a', '#f38ba8', '#a6e3a1', '#f9e2af', '#89b4fa', '#f5c2e7', '#94e2d5', '#bac2de', '#585b70', '#f38ba8', '#a6e3a1', '#f9e2af', '#89b4fa', '#f5c2e7', '#94e2d5', '#a6adc8']
+use-theme-colors=false
+use-theme-transparency=false
+bold-is-bright=true

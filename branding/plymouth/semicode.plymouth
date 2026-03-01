@@ -1,0 +1,8 @@
+[Plymouth Theme]
+Name=SemiCode OS
+Description=SemiCode OS boot splash
+ModuleName=script
+
+[script]
+ImageDir=/usr/share/plymouth/themes/semicode
+ScriptFile=/usr/share/plymouth/themes/semicode/semicode.script
