@@ -4,8 +4,10 @@ set -euo pipefail
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 PROJECT_ROOT="$(dirname "$SCRIPT_DIR")"
 
-# Source config
+# Source and export config so auto/config can access the variables
+set -a
 source "${PROJECT_ROOT}/etc/semicode-amd64.conf"
+set +a
 
 echo "========================================="
 echo " SemiCode OS ${SEMICODE_VERSION} (${SEMICODE_CODENAME})"
