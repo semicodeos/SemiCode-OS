@@ -6,11 +6,14 @@ set -e
 lb config noauto \
     --mode ubuntu \
     --distribution "${SEMICODE_PARENT_DISTRO}" \
+    --parent-distribution "${SEMICODE_PARENT_DISTRO}" \
     --mirror-bootstrap "${SEMICODE_MIRROR}" \
+    --mirror-chroot "${SEMICODE_MIRROR}" \
     --mirror-chroot-security "http://security.ubuntu.com/ubuntu" \
     --archive-areas "main restricted universe multiverse" \
     --architectures "${SEMICODE_ARCH}" \
     --binary-images iso-hybrid \
+    --bootloader grub \
     --iso-application "SemiCode OS" \
     --iso-volume "SemiCode OS ${SEMICODE_VERSION}" \
     --iso-publisher "SemiCode Project" \
@@ -18,5 +21,4 @@ lb config noauto \
     --bootappend-live "boot=casper quiet splash" \
     --linux-flavours generic \
     --security true \
-    --updates true \
     "${@}"

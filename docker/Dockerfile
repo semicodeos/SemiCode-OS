@@ -1,4 +1,6 @@
-FROM debian:bookworm-slim
+FROM --platform=linux/amd64 ubuntu:24.04
+
+ENV DEBIAN_FRONTEND=noninteractive
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
     live-build \

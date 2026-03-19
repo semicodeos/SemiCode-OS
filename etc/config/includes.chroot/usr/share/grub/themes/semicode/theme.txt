@@ -17,9 +17,8 @@ terminal-font: "JetBrains Mono Regular 14"
     item_height = 36
     item_padding = 12
     item_spacing = 4
-    selected_item_pixmap_style = "highlight_*.png"
-    icon_height = 32
-    icon_width = 32
+    selected_item_color = "#1e1e2e"
+    selected_item_font = "JetBrains Mono Regular 14"
 }
 
 + label {

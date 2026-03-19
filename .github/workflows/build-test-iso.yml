@@ -1,0 +1,65 @@
+name: Build Test ISO
+
+on:
+  push:
+    branches:
+      - 'build/**'
+  workflow_dispatch:
+    inputs:
+      retention_days:
+        description: 'Days to keep the ISO artifact'
+        required: false
+        default: '7'
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Free up disk space
+        run: |
+          echo "Before cleanup:"
+          df -h /
+          sudo rm -rf /usr/share/dotnet /usr/local/lib/android /opt/ghc \
+            /usr/local/share/boost /usr/share/swift
+          sudo apt-get autoremove -y
+          sudo apt-get clean
+          echo "After cleanup:"
+          df -h /
+
+      - name: Install live-build dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y live-build debootstrap xorriso squashfs-tools \
+            grub-efi-amd64-bin grub-pc-bin mtools dosfstools
+
+      - name: Build ISO
+        run: sudo -E ./scripts/build.sh
+
+      - name: Verify ISO
+        run: |
+          ISO=$(find builds/amd64/ -name '*.iso' -print -quit)
+          if [ -z "$ISO" ]; then
+            echo "ERROR: No ISO file found"
+            exit 1
+          fi
+          SIZE=$(du -m "$ISO" | cut -f1)
+          echo "ISO: $ISO"
+          echo "Size: ${SIZE}MB"
+          if [ "$SIZE" -lt 500 ]; then
+            echo "WARNING: ISO seems too small (${SIZE}MB), build may be incomplete"
+            exit 1
+          fi
+          echo "ISO size looks reasonable."
+
+      - name: Upload ISO artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: semicode-os-test-${{ github.sha }}
+          path: builds/amd64/*.iso
+          retention-days: ${{ inputs.retention_days || '7' }}

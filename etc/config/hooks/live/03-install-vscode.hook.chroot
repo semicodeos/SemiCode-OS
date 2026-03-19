@@ -17,4 +17,9 @@ export CARGO_HOME=/opt/cargo
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y --no-modify-path
 ln -sf /opt/cargo/bin/* /usr/local/bin/
 
-echo ">>> [03] VS Code, Docker, Terraform, and Rust installed."
+# Install eza (modern ls replacement) via binary release
+EZA_VERSION="0.20.14"
+curl -fsSL "https://github.com/eza-community/eza/releases/download/v${EZA_VERSION}/eza_x86_64-unknown-linux-gnu.tar.gz" \
+    | tar xz -C /usr/local/bin/
+
+echo ">>> [03] VS Code, Docker, Terraform, Rust, and eza installed."

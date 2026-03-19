@@ -1,0 +1,10 @@
+PRETTY_NAME="SemiCode OS 2.0 (Genesis)"
+NAME="SemiCode OS"
+VERSION_ID="2.0"
+VERSION="2.0 (Genesis)"
+VERSION_CODENAME=genesis
+ID=semicode
+ID_LIKE=ubuntu
+HOME_URL="https://github.com/semicodeos/SemiCodeOS"
+SUPPORT_URL="https://github.com/semicodeos/SemiCodeOS/issues"
+BUG_REPORT_URL="https://github.com/semicodeos/SemiCodeOS/issues"
