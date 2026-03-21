@@ -1,9 +1,6 @@
 ubuntu-minimal
 casper
-lupin-casper
 grub-efi-amd64
 grub-efi-amd64-signed
 shim-signed
 linux-generic
-calamares
-calamares-settings-ubuntu

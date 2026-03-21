@@ -1,6 +1,6 @@
 #!/bin/bash
 set -euo pipefail
-echo ">>> [03] Installing VS Code and extensions..."
+echo ">>> [03] Installing third-party packages..."
 
 # Install VS Code
 apt-get install -y code
@@ -10,6 +10,12 @@ apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin do
 
 # Install Terraform
 apt-get install -y terraform
+
+# Install kubectl and helm (repos added in hook 01)
+apt-get install -y kubectl helm
+
+# Install Calamares installer
+apt-get install -y calamares || echo "WARNING: calamares not available, skipping install-to-disk support"
 
 # Install Rust via rustup (system-wide)
 export RUSTUP_HOME=/opt/rustup
