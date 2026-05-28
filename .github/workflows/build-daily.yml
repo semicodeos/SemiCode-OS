@@ -21,7 +21,7 @@ jobs:
             grub-efi-amd64-bin grub-pc-bin mtools dosfstools
 
       - name: Build ISO
-        run: sudo ./scripts/build.sh
+        run: sudo -E ./scripts/build.sh
 
       - name: Upload ISO artifact
         uses: actions/upload-artifact@v4
