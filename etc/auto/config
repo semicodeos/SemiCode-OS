@@ -13,7 +13,7 @@ lb config noauto \
     --archive-areas "main restricted universe multiverse" \
     --architectures "${SEMICODE_ARCH}" \
     --binary-images iso-hybrid \
-    --bootloaders "grub-pc grub-efi" \
+    --bootloader grub-efi \
     --iso-application "SemiCode OS" \
     --iso-volume "SemiCode OS ${SEMICODE_VERSION}" \
     --iso-publisher "SemiCode Project" \
