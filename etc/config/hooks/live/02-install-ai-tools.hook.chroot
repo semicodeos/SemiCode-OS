@@ -11,7 +11,13 @@ npm install -g @anthropic-ai/claude-code
 # OpenAI Codex CLI (via npm)
 npm install -g @openai/codex
 
-# Aider (via pip)
-pip3 install --break-system-packages aider-chat
+# Aider via pipx for an isolated, system-wide install. A plain
+# `pip install --break-system-packages` conflicts with dpkg-managed deps
+# (it cannot uninstall the system urllib3, which has no pip RECORD file).
+# pipx installs aider into its own venv and links the CLI onto PATH.
+export PIPX_HOME=/opt/pipx
+export PIPX_BIN_DIR=/usr/local/bin
+apt-get install -y pipx
+pipx install aider-chat
 
 echo ">>> [02] AI tools installed."
