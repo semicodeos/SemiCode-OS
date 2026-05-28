@@ -3,7 +3,7 @@ set -euo pipefail
 echo ">>> [05] Applying SemiCode branding..."
 
 # Set Plymouth theme
-if [ -d /usr/share/plymouth/themes/semicode ]; then
+if [ -d /usr/share/plymouth/themes/semicode ] && command -v plymouth-set-default-theme >/dev/null; then
     plymouth-set-default-theme semicode
     update-initramfs -u
 fi

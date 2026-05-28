@@ -11,8 +11,16 @@ apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin do
 # Install Terraform
 apt-get install -y terraform
 
-# Install kubectl and helm (repos added in hook 01)
-apt-get install -y kubectl helm
+# Install kubectl (repo added in hook 01)
+apt-get install -y kubectl
+
+# Install Helm from its official binary release (the baltocdn apt repo is
+# defunct). get.helm.sh is the upstream-maintained download host.
+HELM_VERSION="3.16.4"
+curl -fsSL "https://get.helm.sh/helm-v${HELM_VERSION}-linux-amd64.tar.gz" \
+    | tar xz -C /tmp linux-amd64/helm
+install -m 0755 /tmp/linux-amd64/helm /usr/local/bin/helm
+rm -rf /tmp/linux-amd64
 
 # Install Calamares installer
 apt-get install -y calamares || echo "WARNING: calamares not available, skipping install-to-disk support"

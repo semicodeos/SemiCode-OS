@@ -2,6 +2,9 @@
 set -euo pipefail
 echo ">>> [02] Installing AI coding tools..."
 
+# Node.js (provides npm) from the NodeSource repo added in hook 01
+apt-get install -y nodejs
+
 # Claude Code CLI (via npm)
 npm install -g @anthropic-ai/claude-code
 
