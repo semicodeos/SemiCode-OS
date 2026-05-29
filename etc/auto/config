@@ -8,12 +8,20 @@ lb config noauto \
     --distribution "${SEMICODE_PARENT_DISTRO}" \
     --parent-distribution "${SEMICODE_PARENT_DISTRO}" \
     --mirror-bootstrap "${SEMICODE_MIRROR}" \
+    --parent-mirror-bootstrap "${SEMICODE_MIRROR}" \
     --mirror-chroot "${SEMICODE_MIRROR}" \
-    --mirror-chroot-security "http://security.ubuntu.com/ubuntu" \
+    --parent-mirror-chroot "${SEMICODE_MIRROR}" \
+    --mirror-chroot-security "${SEMICODE_MIRROR_SECURITY}" \
+    --parent-mirror-chroot-security "${SEMICODE_MIRROR_SECURITY}" \
+    --mirror-binary "${SEMICODE_MIRROR}" \
+    --parent-mirror-binary "${SEMICODE_MIRROR}" \
+    --mirror-binary-security "${SEMICODE_MIRROR_SECURITY}" \
+    --parent-mirror-binary-security "${SEMICODE_MIRROR_SECURITY}" \
     --archive-areas "main restricted universe multiverse" \
+    --parent-archive-areas "main restricted universe multiverse" \
     --architectures "${SEMICODE_ARCH}" \
     --binary-images iso-hybrid \
-    --bootloaders "grub-pc grub-efi" \
+    --bootloaders grub-efi \
     --iso-application "SemiCode OS" \
     --iso-volume "SemiCode OS ${SEMICODE_VERSION}" \
     --iso-publisher "SemiCode Project" \

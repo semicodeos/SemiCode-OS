@@ -32,14 +32,14 @@ jobs:
           echo "After cleanup:"
           df -h /
 
-      - name: Install live-build dependencies
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y live-build debootstrap xorriso squashfs-tools \
-            grub-efi-amd64-bin grub-pc-bin mtools dosfstools
+      - name: Build builder image (modern live-build on Debian)
+        run: docker build -t semicode-builder docker/
 
       - name: Build ISO
-        run: sudo -E ./scripts/build.sh
+        run: |
+          docker run --rm --privileged \
+            -v "${{ github.workspace }}":/build \
+            semicode-builder ./scripts/build.sh
 
       - name: Verify ISO
         run: |

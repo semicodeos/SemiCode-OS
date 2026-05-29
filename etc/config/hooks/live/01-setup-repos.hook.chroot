@@ -27,10 +27,9 @@ curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.31/deb/Release.key | gpg --dearm
 echo "deb [arch=amd64 signed-by=/etc/apt/keyrings/kubernetes.gpg] https://pkgs.k8s.io/core:/stable:/v1.31/deb/ /" \
     > /etc/apt/sources.list.d/kubernetes.list
 
-# Helm
-curl -fsSL https://baltocdn.com/helm/signing.asc | gpg --dearmor -o /etc/apt/keyrings/helm.gpg
-echo "deb [arch=amd64 signed-by=/etc/apt/keyrings/helm.gpg] https://baltocdn.com/helm/stable/debian/ all main" \
-    > /etc/apt/sources.list.d/helm.list
+# Helm is installed from its official binary release in hook 03; the old
+# baltocdn apt repo has been decommissioned (its signing.asc now returns
+# a non-key "OK" placeholder).
 
 apt-get update
 

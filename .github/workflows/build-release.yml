@@ -14,14 +14,21 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Install live-build dependencies
+      - name: Free up disk space
         run: |
-          sudo apt-get update
-          sudo apt-get install -y live-build debootstrap xorriso squashfs-tools \
-            grub-efi-amd64-bin grub-pc-bin mtools dosfstools
+          sudo rm -rf /usr/share/dotnet /usr/local/lib/android /opt/ghc \
+            /usr/local/share/boost /usr/share/swift
+          sudo apt-get clean
+          df -h /
+
+      - name: Build builder image (modern live-build on Debian)
+        run: docker build -t semicode-builder docker/
 
       - name: Build ISO
-        run: sudo -E ./scripts/build.sh
+        run: |
+          docker run --rm --privileged \
+            -v "${{ github.workspace }}":/build \
+            semicode-builder ./scripts/build.sh
 
       - name: Get version from tag
         id: version

@@ -2,28 +2,33 @@
 
 ## Prerequisites
 
-- Ubuntu 24.04 or Debian 12+ (for native builds)
-- OR Docker (for containerized builds — recommended)
+- Docker (for containerized builds — recommended)
+- OR Debian 13 (trixie) with a modern live-build, for native builds
 - At least 20 GB free disk space
 - Internet connection (to download packages)
+
+> **Note:** Ubuntu's archive ships an ancient `live-build` (3.0~a57) that
+> cannot produce a bootable UEFI/Secure Boot image. The Docker builder uses
+> Debian's modern live-build instead, which is why containerized builds are
+> recommended.
 
 ## Option 1: Docker Build (Recommended)
 
 ```bash
-# Build the container
+# Build the container (Debian + modern live-build)
 docker build -t semicode-builder docker/
 
 # Build the ISO
 docker run --rm --privileged \
-  -v /proc:/proc \
   -v "$(pwd)":/build \
   semicode-builder ./scripts/build.sh
 ```
 
-## Option 2: Native Build
+## Option 2: Native Build (Debian 13+)
 
 ```bash
-# Install live-build
+# Requires a modern live-build (Debian trixie or newer). Ubuntu's
+# live-build is too old and will fail at the bootloader stage.
 sudo apt-get update
 sudo apt-get install -y live-build debootstrap xorriso squashfs-tools \
   grub-efi-amd64-bin grub-pc-bin mtools dosfstools

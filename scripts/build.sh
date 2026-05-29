@@ -6,6 +6,7 @@ PROJECT_ROOT="$(dirname "$SCRIPT_DIR")"
 
 # Source and export config so auto/config can access the variables
 set -a
+# shellcheck disable=SC1091  # config path is resolved at runtime
 source "${PROJECT_ROOT}/etc/semicode-amd64.conf"
 set +a
 
